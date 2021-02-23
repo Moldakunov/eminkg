@@ -60,16 +60,12 @@ public class forgotPasswordController {
         model.addAttribute("searchForm", new SearchText());
         model.addAttribute("categoryName", getCategoriesByStoreId());
 
-        System.out.println(email);
+        /*System.out.println(email);*/
         sendJSONtoResetPassword(email);
 
     }
 
     private void sendJSONtoResetPassword(String email) throws IOException {
-        /*ObjectMapper mapper = new ObjectMapper();*/
-        /*UserForForgotPassword userForForgotPassword = new UserForForgotPassword(email, 1);
-        String jsonUser = mapper.writeValueAsString(userForForgotPassword);
-        System.out.println(jsonUser);*/
 
         URL url = new URL(GlobalVar.mainURL+"getPasswordByEmail?mailsList="+email+"&storeId="+GlobalVar.storeId);
 
@@ -79,11 +75,6 @@ public class forgotPasswordController {
         con.setRequestProperty("Accept", "application/json");
         con.setDoOutput(true);
 
-        /*try(OutputStream os = con.getOutputStream()) {
-            byte[] input = jsonUser.getBytes("utf-8");
-            os.write(input, 0, input.length);
-        }*/
-
         try(BufferedReader br = new BufferedReader(
                 new InputStreamReader(con.getInputStream(), "utf-8"))) {
             StringBuilder response = new StringBuilder();
@@ -91,7 +82,7 @@ public class forgotPasswordController {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            System.out.println(response.toString());
+            /*System.out.println(response.toString());*/
         }
     }
 

@@ -9,7 +9,7 @@ public class GlobalVar {
     public static String storeName = "EMIN.KG";
 
     // Linux: /home/files/    Windows: C:\home\files\
-    public static final String SITEMAP = "/home/files/";
+    public static final String SITEMAP = "/home/files/sitemaps/eminkg";
 
     // Linux: /home/banners/    Windows: C:\home\banners\
     public static final String BANNER_UPLOAD_DIRECTORY = "/home/banners/eminkg";

@@ -146,7 +146,7 @@ public class SignInController {
             model.addAttribute("id", user.getId());
             model.addAttribute("countFavorite", user.getCountFavorite());
 
-            System.out.println("User в сессии: "+user.toString());
+            /*System.out.println("User в сессии: "+user.toString());*/
             return "account";
         }
         return "404";

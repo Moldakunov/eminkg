@@ -900,9 +900,10 @@
             },
 
             success: function () {
-                alert("Успешно зарегитрирован")
+                alert("Успешно зарегистрирован")
                 /*modalSuccess.style.display = "block";*/
-                /*window.location.href = "/sign-in";*/
+                window.location.href = "/sign-in";
+
             },
             error: function () {
                 alert("Ошибка в регистрации")
@@ -913,6 +914,7 @@
         $('#registerFormId').trigger("reset");
     });
     });
+
     $('#signOutButton').on('click', function (event) {
         event.preventDefault();
 
@@ -977,6 +979,36 @@
             });
         });
 
+    });
+
+    $('#updatePasswordButton').on('click', function (event) {
+        event.preventDefault();
+        $(document).ready(function() {
+            $.ajax({
+                type: 'POST',
+                url: '/updatePassword',
+                data: {
+                    userId: document.getElementById("userId").innerText,
+                    oldPassword : document.getElementById("oldPassword").value,
+                    newPassword : document.getElementById("newPassword").value,
+                },
+                success: function (text) {
+                    if (text === "error"){
+                        alert('Error in old password')
+                    }
+                    else if (text === "success"){
+                        alert("Success update password")
+                    }
+                    else if (text === "errorerror"){
+                        alert("Error error")
+                    }
+                    location.reload()
+                },
+                error: function (text) {
+                    alert(text)
+                }
+            });
+        });
     });
 
     $('.remove-product-from-wish_list').on('click', function (e) {
@@ -1294,6 +1326,16 @@ function successSigninButton() {
         document.getElementById('signinButton').disabled = true;
     } else {
         document.getElementById('signinButton').disabled = false;
+    }
+}
+
+function successUpdatePasswordButton() {
+    if (document.getElementById("oldPassword").value === "" ||
+        document.getElementById("newPassword").value === "") {
+
+        document.getElementById('updatePasswordButton').disabled = true;
+    } else {
+        document.getElementById('updatePasswordButton').disabled = false;
     }
 }
 

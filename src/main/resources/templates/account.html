@@ -63,8 +63,7 @@
                                 <figure>
                                     <h3>Привет</h3>
                                     <h3 th:text="${userName}">Имя</h3>
-                                    <strong>Ваш ID: [[${id}]]</strong><br>
-
+                                    <strong>Ваш ID: </strong><strong id="userId">[[${id}]]</strong><br>
                                 </figure>
                             </div>
                             <br>
@@ -124,39 +123,32 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!--<div class="row">
+                                <h4>Изменение пароля</h4>
+                                <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <label for="userProfile_phone" class="required">Номер телефона</label>
-                                                <input th:value="${phone}" type="tel" id="userProfile_phone" name="userProfile[phone]" required="required" class="form-control form-control" aria-describedby="userProfile_phone_help">
-                                                <small id="userProfile_phone_help" class="form-text text-muted">Пример: +996 XXX XX XX XX</small>
+                                                <label class="required">Старый пароль</label>
+                                                <input type="password" onkeyup="successUpdatePasswordButton()" class="form-control form-control" id="oldPassword">
+                                                <small class="form-text text-muted">Внимание!!! Правильно введите старый пароль</small>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <div class="form-group"><label for="userProfile_publicName">ФИО</label>
-                                                <input type="text" id="userProfile_publicName" name="userProfile[publicName]" class="form-control form-control" th:value="${userName}">
+                                            <div class="form-group">
+                                                <label>Новый пароль</label>
+                                                <input type="password" onkeyup="successUpdatePasswordButton()" class="form-control form-control" id="newPassword">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <div class="form-group"><label for="userProfile_address" class="required">Адрес</label>
-                                                <textarea id="userProfile_address" name="userProfile[address]" required="required" class="form-control form-control"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
+                            </div>
+                            <div class="form-group submit">
+                                <button disabled class="ps-btn" id="updatePasswordButton">Сменить пароль</button>
                             </div>
                             <input type="hidden" id="userProfile__token" name="userProfile[_token]" value="D_IGFIhQoUXIxo7URkziQaMg1vS9n8-9ZeSSgr8Dqvc">
-                            <!--<div class="form-group submit">
-                                <button class="ps-btn">Сохранить</button>
-                            </div>-->
+
                         </form>
                     </div>
                 </div>

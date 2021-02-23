@@ -1,17 +1,31 @@
-package kg.softech;
+package kg.softech.controller;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.Document;
+
+
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class Tes {
-    public static void main(String args[]) {
+@Controller
+public class SitemapController {
+
+
+    @GetMapping("/sitemap.xml")
+    @ResponseBody
+    public FileSystemResource getSitemap(HttpServletResponse responseFirst){
+        FileOutputStream fos = null;
         try {
             // Возьмите файл
             File f = new File("C:\\Users\\Dosmir\\Desktop\\sitemap.xml");
@@ -25,7 +39,7 @@ public class Tes {
             //Получение сайтмэп
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://web.imd.kg:8080/genSiteMap?baseUrl=https://www.stores.kg/product/"))
+                    .uri(URI.create("http://web.imd.kg:8080/getSiteMap?baseUrl=https://www.emin.kg/product/&storeId=5"))
                     .build();
 
             HttpResponse<String> response =
@@ -34,7 +48,7 @@ public class Tes {
 
             //Запись в файл
             //String fileData = "Досмир красавчик";
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\Dosmir\\Desktop\\sitemap.xml");
+            fos = new FileOutputStream("C:\\Users\\Dosmir\\Desktop\\sitemap.xml");
             fos.write(response.body().getBytes());
             fos.flush();
             fos.close();
@@ -42,5 +56,7 @@ public class Tes {
         catch (Exception e) {
             System.err.println(e);
         }
+        responseFirst.setContentType("application/xml");
+        return new FileSystemResource(new File("C:\\Users\\Dosmir\\Desktop\\sitemap.xml"));
     }
 }
