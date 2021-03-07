@@ -79,6 +79,7 @@ public class ProductsController {
 
   public static List<Categories> getCategoriesByStoreId() {
     List<Categories> categories = new ArrayList<>();
+
     try {
       String response;
       StringBuilder builder = new StringBuilder();
@@ -92,7 +93,7 @@ public class ProductsController {
       }
 
       JSONArray categoriesArray;
-      if (builder.toString().contains("сategory")) {
+      if (!new JSONObject(builder.toString()).getJSONArray("сategory").isEmpty()) {
         categoriesArray = new JSONObject(builder.toString()).getJSONArray("сategory");
 
         for (int i = 0; i < categoriesArray.length(); i++) {
@@ -201,10 +202,12 @@ public class ProductsController {
         builder.append(response);
       }
 
-      JSONArray similarProducts =
-          new JSONObject(builder.toString()).getJSONArray("similarProducts");
-      for (int i = 0; i < similarProducts.length(); i++) {
-        products.add(gson.fromJson(similarProducts.getJSONObject(i).toString(), Product.class));
+      if (new JSONObject(builder.toString()).getJSONArray("similarProducts") != null) {
+        JSONArray similarProducts =
+            new JSONObject(builder.toString()).getJSONArray("similarProducts");
+        for (int i = 0; i < similarProducts.length(); i++) {
+          products.add(gson.fromJson(similarProducts.getJSONObject(i).toString(), Product.class));
+        }
       }
 
       JSONObject product = new JSONObject(builder.toString()).getJSONObject("productById");
