@@ -29,131 +29,145 @@ import static kg.softech.controller.SearchController.searchProducts;
 @RequestMapping("/paginate")
 public class PaginationController {
 
-    /*@GetMapping
-    @ResponseBody
-    public ResponseEntity<?> paginate(@RequestParam("pageNumber") int page,
-                                      @RequestParam("searchText") String searchText,
-                                      @RequestParam("categoryName") String categoryName,
-                                      @RequestParam("subCategoryName") String subCategoryName,
-                                      @RequestParam("sortField") String sortField,
-                                      @RequestParam("direction") String direction) {
-        if (!searchText.isEmpty()) {
+  /*@GetMapping
+  @ResponseBody
+  public ResponseEntity<?> paginate(@RequestParam("pageNumber") int page,
+                                    @RequestParam("searchText") String searchText,
+                                    @RequestParam("categoryName") String categoryName,
+                                    @RequestParam("subCategoryName") String subCategoryName,
+                                    @RequestParam("sortField") String sortField,
+                                    @RequestParam("direction") String direction) {
+      if (!searchText.isEmpty()) {
+          return ResponseEntity.ok(
+                  sortField.isEmpty() && direction.isEmpty()
+                          ? searchProducts(searchText, page, "", "")
+                          : searchProducts(searchText, page, sortField, direction));
+      } else if (!categoryName.isEmpty() && subCategoryName.isEmpty()) {
+          List<Categories> categories = getCategoriesByStoreId();
+
+          for (Categories category : categories)
+              if (categoryName.equals(category.getTranslit())) {
+                  return ResponseEntity.ok(
+                          sortField.isEmpty() && direction.isEmpty()
+                                  ? getProductsByCategory(-category.getId(), page, "", "")
+                                  : getProductsByCategory(-category.getId(), page, sortField, direction)
+                  );
+              }
+      } else {
+          List<Categories> categories = getCategoriesByStoreId();
+
+          for (Categories category : categories)
+              for (SubCategories subCategory : category.getSubCategory())
+                  if (categoryName.equals(category.getTranslit()) && subCategoryName.equals(subCategory.getTranslit())) {
+                      return ResponseEntity.ok(
+                              sortField.isEmpty() && direction.isEmpty()
+                                      ? getProductsByCategory(subCategory.getId(), page, "", "")
+                                      : getProductsByCategory(subCategory.getId(), page, sortField, direction)
+                      );
+                  }
+      }
+      return ResponseEntity.ok("nothing");
+  }*/
+
+  @GetMapping("/search")
+  @ResponseBody
+  public ResponseEntity<?> paginateSearch(
+      @RequestParam("pageNumber") int page,
+      @RequestParam("searchText") String searchText,
+      @RequestParam("sortField") String sortField,
+      @RequestParam("direction") String direction) {
+    if (!searchText.isEmpty()) {
+      return ResponseEntity.ok(
+          sortField.isEmpty() && direction.isEmpty()
+              ? searchProducts(searchText, page, "", "")
+              : searchProducts(searchText, page, sortField, direction));
+    }
+    return ResponseEntity.ok("nothing");
+  }
+
+  @GetMapping("/category")
+  @ResponseBody
+  public ResponseEntity<?> paginateCategory(
+      @RequestParam("pageNumber") int page,
+      @RequestParam("categoryName") String categoryName,
+      @RequestParam("sortField") String sortField,
+      @RequestParam("direction") String direction) {
+    if (!categoryName.isEmpty()) {
+      List<Categories> categories = getCategoriesByStoreId();
+
+      for (Categories category : categories)
+        if (categoryName.equals(category.getTranslit())) {
+          return ResponseEntity.ok(
+              sortField.isEmpty() && direction.isEmpty()
+                  ? getProductsByCategory(-category.getId(), page, "", "")
+                  : getProductsByCategory(-category.getId(), page, sortField, direction));
+        }
+    }
+    return ResponseEntity.ok("nothing");
+  }
+
+  @GetMapping("/subcategory")
+  @ResponseBody
+  public ResponseEntity<?> paginate(
+      @RequestParam("pageNumber") int page,
+      @RequestParam("categoryName") String categoryName,
+      @RequestParam("subCategoryName") String subCategoryName,
+      @RequestParam("sortField") String sortField,
+      @RequestParam("direction") String direction) {
+    List<Categories> categories = getCategoriesByStoreId();
+
+    for (Categories category : categories)
+      if (category.getSubCategory() != null) {
+        for (SubCategories subCategory : category.getSubCategory())
+          if (categoryName.equals(category.getTranslit())
+              && subCategoryName.equals(subCategory.getTranslit())) {
             return ResponseEntity.ok(
-                    sortField.isEmpty() && direction.isEmpty()
-                            ? searchProducts(searchText, page, "", "")
-                            : searchProducts(searchText, page, sortField, direction));
-        } else if (!categoryName.isEmpty() && subCategoryName.isEmpty()) {
-            List<Categories> categories = getCategoriesByStoreId();
+                sortField.isEmpty() && direction.isEmpty()
+                    ? getProductsByCategory(subCategory.getId(), page, "", "")
+                    : getProductsByCategory(subCategory.getId(), page, sortField, direction));
+          }
+      }
 
-            for (Categories category : categories)
-                if (categoryName.equals(category.getTranslit())) {
-                    return ResponseEntity.ok(
-                            sortField.isEmpty() && direction.isEmpty()
-                                    ? getProductsByCategory(-category.getId(), page, "", "")
-                                    : getProductsByCategory(-category.getId(), page, sortField, direction)
-                    );
-                }
-        } else {
-            List<Categories> categories = getCategoriesByStoreId();
+    return ResponseEntity.ok("nothing");
+  }
 
-            for (Categories category : categories)
-                for (SubCategories subCategory : category.getSubCategory())
-                    if (categoryName.equals(category.getTranslit()) && subCategoryName.equals(subCategory.getTranslit())) {
-                        return ResponseEntity.ok(
-                                sortField.isEmpty() && direction.isEmpty()
-                                        ? getProductsByCategory(subCategory.getId(), page, "", "")
-                                        : getProductsByCategory(subCategory.getId(), page, sortField, direction)
-                        );
-                    }
-        }
-        return ResponseEntity.ok("nothing");
-    }*/
+  public List<Product> getProductsByCategory(
+      int localCatId, int page, String sortField, String direction) {
+    List<Product> products = new ArrayList<>();
+    try {
+      String response;
+      StringBuilder builder = new StringBuilder();
+      URL url =
+          new URL(
+              GlobalVar.mainURL
+                  + "getProductsByCategory?storeId="
+                  + GlobalVar.storeId
+                  + "&limit=12"
+                  + "&localCatId="
+                  + localCatId
+                  + "&page="
+                  + page
+                  + (sortField.isEmpty() && direction.isEmpty()
+                      ? ""
+                      : "&sortField=" + sortField + "&direction=" + direction));
 
-    @GetMapping("/search")
-    @ResponseBody
-    public ResponseEntity<?> paginateSearch(@RequestParam("pageNumber") int page,
-                                            @RequestParam("searchText") String searchText,
-                                            @RequestParam("sortField") String sortField,
-                                            @RequestParam("direction") String direction) {
-        if (!searchText.isEmpty()) {
-            return ResponseEntity.ok(
-                    sortField.isEmpty() && direction.isEmpty()
-                            ? searchProducts(searchText, page, "", "")
-                            : searchProducts(searchText, page, sortField, direction));
-        }
-        return ResponseEntity.ok("nothing");
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      BufferedReader reader =
+          new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+      while ((response = reader.readLine()) != null) {
+        builder.append(response);
+      }
+
+      JSONArray categoriesArray = new JSONObject(builder.toString()).getJSONArray("productList");
+
+      for (int i = 0; i < categoriesArray.length(); i++) {
+        products.add(
+            new Gson().fromJson(categoriesArray.getJSONObject(i).toString(), Product.class));
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-
-    @GetMapping("/category")
-    @ResponseBody
-    public ResponseEntity<?> paginateCategory(@RequestParam("pageNumber") int page,
-                                              @RequestParam("categoryName") String categoryName,
-                                              @RequestParam("sortField") String sortField,
-                                              @RequestParam("direction") String direction) {
-        if (!categoryName.isEmpty()) {
-            List<Categories> categories = getCategoriesByStoreId();
-
-            for (Categories category : categories)
-                if (categoryName.equals(category.getTranslit())) {
-                    return ResponseEntity.ok(
-                            sortField.isEmpty() && direction.isEmpty()
-                                    ? getProductsByCategory(-category.getId(), page, "", "")
-                                    : getProductsByCategory(-category.getId(), page, sortField, direction)
-                    );
-                }
-        }
-        return ResponseEntity.ok("nothing");
-    }
-
-    @GetMapping("/subcategory")
-    @ResponseBody
-    public ResponseEntity<?> paginate(@RequestParam("pageNumber") int page,
-                                      @RequestParam("categoryName") String categoryName,
-                                      @RequestParam("subCategoryName") String subCategoryName,
-                                      @RequestParam("sortField") String sortField,
-                                      @RequestParam("direction") String direction) {
-        List<Categories> categories = getCategoriesByStoreId();
-
-        for (Categories category : categories)
-            for (SubCategories subCategory : category.getSubCategory())
-                if (categoryName.equals(category.getTranslit()) && subCategoryName.equals(subCategory.getTranslit())) {
-                    return ResponseEntity.ok(
-                            sortField.isEmpty() && direction.isEmpty()
-                                    ? getProductsByCategory(subCategory.getId(), page, "", "")
-                                    : getProductsByCategory(subCategory.getId(), page, sortField, direction)
-                    );
-                }
-
-        return ResponseEntity.ok("nothing");
-    }
-
-    public List<Product> getProductsByCategory(int localCatId, int page, String sortField, String direction) {
-        List<Product> products = new ArrayList<>();
-        try {
-            String response;
-            StringBuilder builder = new StringBuilder();
-            URL url = new URL(GlobalVar.mainURL
-                    + "getProductsByCategory?storeId=" + GlobalVar.storeId
-                    + "&limit=12"
-                    + "&localCatId=" + localCatId
-                    + "&page=" + page
-                    + (sortField.isEmpty() && direction.isEmpty() ? "" : "&sortField=" + sortField + "&direction=" + direction));
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-            while ((response = reader.readLine()) != null) {
-                builder.append(response);
-            }
-
-            JSONArray categoriesArray = new JSONObject(builder.toString()).getJSONArray("productList");
-
-            for (int i = 0; i < categoriesArray.length(); i++) {
-                products.add(new Gson().fromJson(categoriesArray.getJSONObject(i).toString(), Product.class));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return products;
-    }
+    return products;
+  }
 }

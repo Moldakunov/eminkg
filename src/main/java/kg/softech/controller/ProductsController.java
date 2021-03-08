@@ -38,13 +38,11 @@ import java.util.stream.Collectors;
 @Controller
 public class ProductsController {
 
-    @Autowired
-    CookiesRepository cookiesRepository;
+  @Autowired CookiesRepository cookiesRepository;
 
-    @Autowired
-    EntityManager entityManager;
+  @Autowired EntityManager entityManager;
 
-    //http://109.201.191.116:8080/getCacheCount             http://109.201.191.116:8080/clearCache
+  // http://109.201.191.116:8080/getCacheCount             http://109.201.191.116:8080/clearCache
 
   // ТОВАРЫ В КОРЗИНЕ ПО SESSIONID
   public static List<Product> getProductsByIds(String ids) {
@@ -97,19 +95,23 @@ public class ProductsController {
         categoriesArray = new JSONObject(builder.toString()).getJSONArray("сategory");
 
         for (int i = 0; i < categoriesArray.length(); i++) {
-          categories.add(
-              new Gson().fromJson(categoriesArray.getJSONObject(i).toString(), Categories.class));
-          categories.get(i).setTranslit(Categories.transliterate(categories.get(i).getName()));
+          if (!categoriesArray.getJSONObject(i).get("name").toString().isEmpty()) {
+            // на случай если имена категории будут одинаковыми
+            // if (categories.contains(categoriesArray.getJSONObject(i).getString("name"))) {}
+            categories.add(
+                new Gson().fromJson(categoriesArray.getJSONObject(i).toString(), Categories.class));
+            categories.get(i).setTranslit(Categories.transliterate(categories.get(i).getName()));
 
-          if (categories.get(i).getSubCategory() != null) {
-            for (int j = 0; j < categories.get(i).getSubCategory().size(); j++) {
-              categories
-                  .get(i)
-                  .getSubCategory()
-                  .get(j)
-                  .setTranslit(
-                      Categories.transliterate(
-                          categories.get(i).getSubCategory().get(j).getName()));
+            if (categories.get(i).getSubCategory() != null) {
+              for (int j = 0; j < categories.get(i).getSubCategory().size(); j++) {
+                categories
+                    .get(i)
+                    .getSubCategory()
+                    .get(j)
+                    .setTranslit(
+                        Categories.transliterate(
+                            categories.get(i).getSubCategory().get(j).getName()));
+              }
             }
           }
         }
@@ -169,11 +171,13 @@ public class ProductsController {
       if (product.getLocalCatLevel1() == category.getId()) {
         model.addAttribute("categoryNoTranslitName", category.getName());
         model.addAttribute("category", category.getTranslit());
-        for (SubCategories subCategory : category.getSubCategory()) {
-          if (product.getLocalCatLevel2() == subCategory.getId()) {
-            model.addAttribute("subCategoryNoTranslitName", subCategory.getName());
-            model.addAttribute("subCategory", subCategory.getTranslit());
-            return "product-box";
+        if (category.getSubCategory() != null) {
+          for (SubCategories subCategory : category.getSubCategory()) {
+            if (product.getLocalCatLevel2() == subCategory.getId()) {
+              model.addAttribute("subCategoryNoTranslitName", subCategory.getName());
+              model.addAttribute("subCategory", subCategory.getTranslit());
+              return "product-box";
+            }
           }
         }
       }
