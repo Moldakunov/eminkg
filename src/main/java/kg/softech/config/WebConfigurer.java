@@ -27,9 +27,10 @@ public class WebConfigurer implements WebMvcConfigurer {
                     "classpath:/static/plugins/",
                     "classpath:/static/fonts/");
 
-//    registry.addResourceHandler("sitemap.xml")
-//            .addResourceLocations("file:" + SITEMAP);
     registry.addResourceHandler("favicon.ico")
-            .addResourceLocations("file:" + FAVICON);
+            .addResourceLocations("classpath:/static/img/favicon.ico");
     }
+
+    /*registry.addResourceHandler("sitemap.xml")
+            .addResourceLocations("file:" + SITEMAP);*/
 }
