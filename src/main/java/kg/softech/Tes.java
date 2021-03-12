@@ -6,13 +6,10 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 public class Tes {
     public static void main(String args[]) {
-        try {
+        /*try {
             // Возьмите файл
             File f = new File("C:\\Users\\Dosmir\\Desktop\\sitemap.xml");
             //Создайте новый файл
@@ -30,7 +27,7 @@ public class Tes {
 
             HttpResponse<String> response =
                     client.send(request, HttpResponse.BodyHandlers.ofString());
-            /*System.out.println(response.body());*/
+            *//*System.out.println(response.body());*//*
 
             //Запись в файл
             //String fileData = "Досмир красавчик";
@@ -41,6 +38,6 @@ public class Tes {
         }
         catch (Exception e) {
             System.err.println(e);
-        }
+        }*/
     }
 }
