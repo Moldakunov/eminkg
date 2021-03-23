@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--link(href="apple-touch-icon.png" rel="apple-touch-icon")-->
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title th:text="${title}">Title</title>
+    <link href="/img/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{plugins/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{fonts/Linearicons/Linearicons/Font/demo-files/demo.css}">
+    <link rel="stylesheet" th:href="@{plugins/bootstrap4/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{plugins/owl-carousel/assets/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{plugins/slick/slick/slick.css}">
+    <link rel="stylesheet" th:href="@{plugins/lightGallery-master/dist/css/lightgallery.min.css}">
+    <link rel="stylesheet" th:href="@{plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css}">
+    <link rel="stylesheet" th:href="@{plugins/jquery-ui/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{plugins/select2/dist/css/select2.min.css}">
+    <link rel="stylesheet" th:href="@{css/style.min.css}">
+</head>
+<body>
+
+<header class="header header--1" data-sticky="true">
+    <div th:replace="header :: header"></div>
+</header>
+
+<header class="header header--mobile" data-sticky="true">
+    <div th:replace="header-mobile :: header"></div>
+</header>
+
+<div class="mobile-menu">
+    <div th:insert="mobile-menu :: mobile-menu"></div>
+</div>
+
+<div class="ps-page--single" id="contact-us">
+    <div class="ps-breadcrumb">
+        <div class="ps-container">
+            <div class="ps-layout--shop">
+                <div class="ps-layout__right">
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="/index">Главная</a>
+                        </li>
+                        <li>
+                            Услуги
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ps-contact-info">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table ps-table ps-table--vendor">
+                    <thead>
+
+                    <tr>
+                        <th>№</th>
+                        <th>Вид работ</th>
+                        <th>Цена (сом)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="3"><strong>Монтаж систем охранно-тревожной сигнализации</strong></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Установка охранных извещателей (за 1 шт.) на открывание дверей, окон</td>
+                        <td>240</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Установка охранных извещателей (за 1 шт.) на движение, разбитие стекла</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Установка охранных извещателей (за 1 шт.) извещатель емкостной</td>
+                        <td>540</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Установка охранных извещателей (за 1 шт.) извещатель ультразвуковой</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Установка оповещателей (за 1 шт.) светового, звукового</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Установка оповещателей (за 1 шт.) светозвукового</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Установка блока питания, UPS (за 1 шт.)</td>
+                        <td>1450</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Прокладка провода открытой проводки (за 1 м.) по деревянному основанию, до 1 км.</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Прокладка провода открытой проводки (за 1 м.) по кирпичному основанию</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Прокладка провода открытой проводки (за 1 м.) по бетонному и металл. основанию</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Прокладка провода в гофротрубе (за 1 м.)</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Прокладка провода в кабельном канале (за 1 м.) до 60 м.</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Прокладка провода в металлорукаве (за 1 м.)</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Установка объектового прибора с передачей информации на ПЦН</td>
+                        <td>4200</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Прокладка гофротрубы</td>
+                        <td>200</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Монтаж систем видеонаблюдения</strong></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Выезд для выявления характера неисправности</td>
+                        <td>360</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Монтаж и подключение внутренней видеокамеры</td>
+                        <td>850</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Монтаж и подключение купольной видеокамеры</td>
+                        <td>850</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Монтаж и подключение уличной видеокамеры</td>
+                        <td>850</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Монтаж и подключение IP видеокамеры</td>
+                        <td>1200</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Установка и настройка видеорегистратора на 4 видеокамеры (устройство записи)</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Установка и настройка видеорегистратора на 8 видеокамер (устройство записи)</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Установка и настройка видеорегистратора на 16 видеокамер (устройство записи)</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Установка и настройка видеорегистратора на 32 видеокамеры (устройство записи)</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Установка и настройка IP видеосервера на 4 видеокамеры</td>
+                        <td>3000</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Установка и настройка IP видеосервера на 8 видеокамер</td>
+                        <td>3000</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Установка и настройка IP видеосервера на 16 видеокамер</td>
+                        <td>3000</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Установка микрофона</td>
+                        <td>540</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Подключение блока питания внутреннего</td>
+                        <td>360</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Подключение блока питания уличного</td>
+                        <td>360</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Коннектор типа RJ45, RJ12, RJ11</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Монтаж распределительной коробки</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Прокладка кабеля для видеосистем открытой проводкой</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>Установка ПО, программирование и тестирование удаленного доступа</td>
+                        <td>3600</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>Демонтаж</td>
+                        <td>50% стоимости</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>Монтаж и подключение домофонных систем, систем ограничения доступа</strong></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Выезд для выявления характера неисправности</td>
+                        <td>360</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Установка врезного считывателя прокси карт</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Установка накладного считывателя прокси карт</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Установка считывателя-контроллера прокси карт</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Установка автономного контроллера</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Программирование прокси-карты</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Установка контактора для ключей-таблеток</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Установка кнопки запроса на выход</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Установка домофона</td>
+                        <td>1500</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Установка доводчика дверного</td>
+                        <td>840</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Установка врезного электромеханического замка</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Установка накладного электромеханического замка</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Установка электромагнитного замка</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Установка гибкого перехода на дверь</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Установка и настройка базового ПО</td>
+                        <td>1800</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Установка турникета</td>
+                        <td>6000</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>Установка шлагбаума</td>
+                        <td>6000</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>Инструктаж персонала по работе с системой</td>
+                        <td>240</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="ps-footer">
+    <div th:replace="footer :: footer"></div>
+</footer>
+
+<script src="/plugins/jquery-1.12.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="/plugins/owl-carousel/owl.carousel.min.js"></script>
+<script src="/plugins/bootstrap4/js/bootstrap.min.js"></script>
+<script src="/plugins/imagesloaded.pkgd.js"></script>
+<script src="/plugins/masonry.pkgd.min.js"></script>
+<script src="/plugins/isotope.pkgd.min.js"></script>
+<script src="/plugins/jquery.matchHeight-min.js"></script>
+<script src="/plugins/slick/slick/slick.min.js"></script>
+<script src="/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+<script src="/plugins/slick-animation.min.js"></script>
+<script src="/plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="/plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+<script src="/plugins/jquery.slimscroll.min.js"></script>
+<script src="/plugins/select2/dist/js/select2.full.min.js"></script>
+
+<!-- Custom scripts-->
+<script src="/js/main.min.js"></script>
+</body>
+</html>
