@@ -144,7 +144,9 @@
                         </div>
                         <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
                             <div class="ps-product__content">
-                                <a class="ps-product__title" th:href="'/product/' + ${newProduct.seoUrl}"
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="top"
+                                    th:title="${newProduct.name}"
+                                   th:href="'/product/' + ${newProduct.seoUrl}"
                                    th:text="${newProduct.nameShort}">
                                     Наименование товара
                                 </a>
@@ -155,7 +157,9 @@
                                 </p>
                             </div>
                             <div class="ps-product__content hover">
-                                <a class="ps-product__title" th:href="'/product/' + ${newProduct.seoUrl}"
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="top"
+                                    th:title="${newProduct.name}"
+                                   th:href="'/product/' + ${newProduct.seoUrl}"
                                    th:text="${newProduct.nameShort}">
                                     Наименование товара
                                 </a>
@@ -195,7 +199,9 @@
                         </div>
                         <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
                             <div class="ps-product__content">
-                                <a class="ps-product__title" th:href="'/product/' + ${newIncomeProduct.seoUrl}"
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="top"
+                                   th:title="${newIncomeProduct.name}"
+                                   th:href="'/product/' + ${newIncomeProduct.seoUrl}"
                                    th:text="${newIncomeProduct.nameShort}">
                                     Наименование товара
                                 </a>
@@ -206,7 +212,9 @@
                                 </p>
                             </div>
                             <div class="ps-product__content hover">
-                                <a class="ps-product__title" th:href="'/product/' + ${newIncomeProduct.seoUrl}"
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="top"
+                                   th:title="${newIncomeProduct.name}"
+                                   th:href="'/product/' + ${newIncomeProduct.seoUrl}"
                                    th:text="${newIncomeProduct.nameShort}">
                                     Наименование товара
                                 </a>
@@ -253,7 +261,9 @@
                         </div>
                         <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
                             <div class="ps-product__content">
-                                <a class="ps-product__title" th:href="'/product/' + ${hitProduct.seoUrl}"
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="top"
+                                   th:title="${hitProduct.name}"
+                                   th:href="'/product/' + ${hitProduct.seoUrl}"
                                    th:text="${hitProduct.nameShort}">
                                     Наименование товара
                                 </a>
@@ -264,7 +274,9 @@
                                 </p>
                             </div>
                             <div class="ps-product__content hover">
-                                <a class="ps-product__title" th:href="'/product/' + ${hitProduct.seoUrl}"
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="top"
+                                   th:title="${hitProduct.name}"
+                                   th:href="'/product/' + ${hitProduct.seoUrl}"
                                    th:text="${hitProduct.nameShort}">
                                     Наименование товара
                                 </a>
