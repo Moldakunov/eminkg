@@ -127,6 +127,7 @@
 </div>
     <br>
     <br>
+
     <div class="ps-home-trending-products ps-section--furniture">
         <div class="container">
             <div class="ps-section__header">
@@ -141,6 +142,15 @@
                                 <img alt=""
                                      th:src="${!newProduct.imageUrl.empty} ? ${newProduct.imageUrl} : @{/img/no-photo-small.jpg}"/>
                             </a>
+                            <ul class="ps-product__actions">
+                                <li>
+                                   <a href="" class="product__action" data-toggle="tooltip" data-placement="top"
+                                      title="Добавить в корзину" th:data-productid="${newProduct.id}"
+                                      onclick="alert('Успешно добавлено в корзину');">
+                                       <i class="icon-bag2"></i>
+                                   </a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
                             <div class="ps-product__content">
@@ -196,6 +206,15 @@
                                 <img alt=""
                                      th:src="${!newIncomeProduct.imageUrl.empty} ? ${newIncomeProduct.imageUrl} : @{/img/no-photo-small.jpg}"/>
                             </a>
+                            <ul class="ps-product__actions">
+                                <li>
+                                    <a href="" class="product__action" data-toggle="tooltip" data-placement="top"
+                                       title="Добавить в корзину" th:data-productid="${newIncomeProduct.id}"
+                                       onclick="alert('Успешно добавлено в корзину');">
+                                        <i class="icon-bag2"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
                             <div class="ps-product__content">
@@ -258,6 +277,15 @@
                                 <img alt=""
                                      th:src="${!hitProduct.imageUrl.empty} ? ${hitProduct.imageUrl} : @{/img/no-photo-small.jpg}"/>
                             </a>
+                            <ul class="ps-product__actions">
+                                <li>
+                                    <a href="" class="product__action" data-toggle="tooltip" data-placement="top"
+                                       title="Добавить в корзину" th:data-productid="${hitProduct.id}"
+                                       onclick="alert('Успешно добавлено в корзину');">
+                                        <i class="icon-bag2"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
                             <div class="ps-product__content">

@@ -1200,6 +1200,7 @@
     });
 
     $(document).ready(function () {
+
         $("#multiplyButton").click(function () {
             $('#myModal').modal('show');
         });
