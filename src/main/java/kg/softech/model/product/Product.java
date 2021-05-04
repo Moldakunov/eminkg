@@ -14,7 +14,7 @@ public class Product {
     private int status;
     private int qty;
     private int globalCategoryId;
-    private int sellQty;
+    private double sellQty;
     // @DateTimeFormat(pattern = "dd.mm.yyyy")
     private String datePost;
     // @DateTimeFormat(pattern = "dd.mm.yyyy")
@@ -174,11 +174,11 @@ public class Product {
         this.globalCategoryId = globalCategoryId;
     }
 
-    public int getSellQty() {
+    public double getSellQty() {
         return sellQty;
     }
 
-    public void setSellQty(int sellQty) {
+    public void setSellQty(double sellQty) {
         this.sellQty = sellQty;
     }
 
