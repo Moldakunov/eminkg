@@ -204,6 +204,28 @@ public class OtherTemplatesController {
         return "delivery";
     }
 
+    @GetMapping("/services")
+    public String services(Model model,
+                           @CookieValue(name = "JSESSIONID") String givenCookie,
+                           HttpServletResponse response,
+                           HttpSession session) {
+        Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
+
+        model.addAttribute("title", GlobalVar.storeName + " - Услуги");
+        model.addAttribute("categoryName", getCategoriesByStoreId());
+        model.addAttribute("searchForm", new SearchText());
+        model.addAttribute("feedbackForm", new FeedbackMessage());
+
+        if (session.getAttribute("userInfo")!=null){
+            model.addAttribute("userInSession", "Кабинет");
+        }
+        if (session.getAttribute("userInfo")==null){
+            model.addAttribute("userNotInSession", "Войти");
+        }
+
+        return "services";
+    }
+
     @RequestMapping(value = "/addToFavorite", method = RequestMethod.POST)
     @ResponseBody
     public String addProductToFavorite(

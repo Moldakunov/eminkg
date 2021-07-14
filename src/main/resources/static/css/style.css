@@ -8198,8 +8198,11 @@ textarea.form-control {
     color: #06c
 }
 
+.tooltip > .tooltip-inner {background-color: #e8eaf6; color: #000000; box-shadow: 2px 2px 4px 0px rgba(161, 161, 161, 1);}
+
 .ps-product .ps-product__title:hover {
     color: #ff3d00;
+    background-color: #FFFFFF;
 }
 
 .ps-product .ps-product__progress-bar {
@@ -15932,7 +15935,7 @@ textarea.form-control {
     justify-content: space-between;
     padding: 10px 30px;
     border-bottom: none;
-    background-color: white;
+    background-color: #ffffff;
 }
 
 .header--mobile .navigation--mobile .navigation__left {

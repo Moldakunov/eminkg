@@ -1194,8 +1194,13 @@
 
         /* For tag*/
     }
+    //для подсказки при наведении на название товара tooltip
+    $(document).ready(function(){
+        $("a").tooltip();
+    });
 
     $(document).ready(function () {
+
         $("#multiplyButton").click(function () {
             $('#myModal').modal('show');
         });

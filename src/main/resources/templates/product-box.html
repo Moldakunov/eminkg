@@ -86,7 +86,7 @@
                         <p class="ps-product__price sale"
                            th:text="${#strings.substring(product.price, 0, #strings.length(product.price)-2)} + ' сом'">Цена</p>
                         Код товара: <strong th:utext="'<code id=product-id>' + ${product.id} + '</code>'">Код товара</strong><br><br>
-                        Количество (шт) - <strong style="color: red" th:text="${product.qty}">Количество</strong>
+
                     </h4>
                     <h4 class="ps-product__price" th:if="${product.status} == -1 OR ${product.status} == -3">
                         <p class="ps-product__price sale" th:inline="text">[[${product.discountPrice}]] сом
@@ -97,12 +97,12 @@
                                    th:text="'(-' + ${product.discountPercent} + '%)'">Это скидка</small>
                         </p>
                         Код товара: <strong th:utext="'<code>' + ${product.id} + '</code>'">Код товара</strong>
-                        Количество (шт) - <strong style="color: red" th:text="${product.qty}">Количество</strong>
+
                     </h4>
                     <div class="ps-product__desc">
                         <p>Статус:<a th:class="${product.qty == 0} ? 'ps-tag--out-stock' : 'ps-tag--in-stock'"
                                      th:text="${product.qty == 0} ? ' Нет в наличии' : ' В наличии'">
-                            <strong> Нет в наличие</strong></a></p>
+                            <strong> Нет в наличии</strong></a></p>
                         <ul class="ps-list--dot">
                             <li th:text="${product.bullet1}"> Описание 1</li>
                             <li th:text="${product.bullet2}"> Описание 2</li>
