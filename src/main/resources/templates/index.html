@@ -127,7 +127,69 @@
 </div>
     <br>
     <br>
-
+    <div class="ps-product-list ps-clothings">
+        <div class="container">
+            <div class="ps-section__header">
+                <h3>Акционные товары</h3>
+            </div>
+            <div class="ps-section__content">
+                <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                    <div class="ps-product" th:each="dicountProduct : ${dicountProducts}">
+                        <div class="ps-product__thumbnail">
+                            <a th:href="'/product/' + ${dicountProduct.seoUrl}">
+                                <img alt=""
+                                     th:src="${!dicountProduct.imageUrl.empty} ? ${dicountProduct.imageUrl} : @{/img/no-photo-small.jpg}"/>
+                            </a>
+                            <div class="ps-product__badge" th:text="'-'+${dicountProduct.discountPercent}+ '%'">Процент скидки</div>
+                            <ul class="ps-product__actions">
+                                <li>
+                                    <a href="" class="product__action" data-toggle="tooltip" data-placement="top"
+                                       title="Добавить в корзину" th:data-productid="${dicountProduct.id}"
+                                       onclick="alert('Успешно добавлено в корзину');">
+                                        <i class="icon-bag2"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ps-product__container"><a class="ps-product__vendor" href="#">0777 555 899</a>
+                            <div class="ps-product__content">
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="bottom"
+                                   th:title="${dicountProduct.name}"
+                                   th:href="'/product/' + ${dicountProduct.seoUrl}"
+                                   th:text="${dicountProduct.nameShort}">
+                                    Наименование товара
+                                </a>
+                                <p class="ps-product__price sale"
+                                   th:text="${#strings.substring(dicountProduct.discountPrice, 0, #strings.length(dicountProduct.discountPrice)-2)} + ' сом'">
+                                    Цена со скидкой
+                                </p>
+                                <del th:text="${#strings.substring(dicountProduct.price, 0, #strings.length(dicountProduct.price)-2)} + ' сом'">
+                                    Цена без скидки</del>
+                                <small th:text="'-'+${dicountProduct.discountPercent}+ '%'"></small>
+                            </div>
+                            <div class="ps-product__content hover">
+                                <a class="ps-product__title" data-toggle="tooltip" data-placement="bottom"
+                                   th:title="${dicountProduct.name}"
+                                   th:href="'/product/' + ${dicountProduct.seoUrl}"
+                                   th:text="${dicountProduct.nameShort}">
+                                    Наименование товара
+                                </a>
+                                <p class="ps-product__price sale"
+                                   th:text="${#strings.substring(dicountProduct.discountPrice, 0, #strings.length(dicountProduct.discountPrice)-2)} + ' сом'">
+                                    Цена со скидкой
+                                </p>
+                                <del th:text="${#strings.substring(dicountProduct.price, 0, #strings.length(dicountProduct.price)-2)} + ' сом'">
+                                        Цена без скидки</del>
+                                <small th:text="'-'+${dicountProduct.discountPercent}+ '%'"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
     <div class="ps-home-trending-products ps-section--furniture">
         <div class="container">
             <div class="ps-section__header">

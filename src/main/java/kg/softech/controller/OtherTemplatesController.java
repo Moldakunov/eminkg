@@ -50,6 +50,7 @@ public class OtherTemplatesController {
         model.addAttribute("newProducts", newProducts());
         model.addAttribute("newIncomeProducts", newIncomeProducts());
         model.addAttribute("hitProducts", getHitProducts());
+        model.addAttribute("dicountProducts", discountProducts());
         model.addAttribute("searchForm", new SearchText());
 
         if (session.getAttribute("userInfo")!=null){
@@ -163,6 +164,33 @@ public class OtherTemplatesController {
             StringBuilder builder = new StringBuilder();
             Gson gson = new GsonBuilder().create();
             URL url = new URL(GlobalVar.mainURL + "getNewProducts?limit=10&storeId=" + GlobalVar.storeId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            while ((response = reader.readLine()) != null) {
+                builder.append(response);
+            }
+
+            JSONArray productsArray = new JSONObject(builder.toString()).getJSONArray("productList");
+//            System.out.println(productsArray);
+            for (int i = 0; i < productsArray.length(); i++) {
+                products.add(gson.fromJson(productsArray.getJSONObject(i).toString(), Product.class));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    //НОВИНКИ
+    public List<Product> discountProducts() {
+        List<Product> products = new ArrayList<>();
+        try {
+            String response;
+            StringBuilder builder = new StringBuilder();
+            Gson gson = new GsonBuilder().create();
+            URL url = new URL(GlobalVar.mainURL + "getDiscountProducts?storeId=" + GlobalVar.storeId);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
