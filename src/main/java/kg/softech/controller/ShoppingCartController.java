@@ -29,7 +29,7 @@ public class ShoppingCartController {
 
     @GetMapping
     public String shoppingCart(Model model,
-                               @CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie,
+                               @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                                HttpServletResponse response,
                                HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);

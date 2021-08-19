@@ -39,7 +39,7 @@ public class CartController {
     @ResponseBody
     @Transactional
     public ResponseEntity<?> addToCartNewProduct(@RequestParam String product,
-                                                 @CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie) {
+                                                 @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie) {
         Cart cart;
         if (cookiesRepository.findBySessionId(givenCookie) != null) {
             cart = cookiesRepository.findBySessionId(givenCookie);
@@ -56,7 +56,7 @@ public class CartController {
     @GetMapping
     @ResponseBody
     @Transactional
-    public ResponseEntity<?> getFromCart(@CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie) {
+    public ResponseEntity<?> getFromCart(@CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie) {
         try {
             List<Product> products = ProductsController.getProductsByIds(
                     cookiesRepository.getAllBySessionId(givenCookie)
@@ -73,7 +73,7 @@ public class CartController {
     /*@DeleteMapping(value = "/cart")
     @ResponseBody
     @Transactional
-    public ResponseEntity<?> deleteFromCart(@CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie) {
+    public ResponseEntity<?> deleteFromCart(@CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie) {
         cookiesRepository.removeCartBySessionId(givenCookie);
         return ResponseEntity.ok("ok");
     }*/
@@ -81,7 +81,7 @@ public class CartController {
     @DeleteMapping
     @ResponseBody
     @Transactional
-    public ResponseEntity<?> deleteFromCart(@CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie,
+    public ResponseEntity<?> deleteFromCart(@CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                                             @RequestParam String product) {
         if (cookiesRepository.findBySessionId(givenCookie) == null) {
             return ResponseEntity.ok("[]");
@@ -102,7 +102,7 @@ public class CartController {
 
     @PostMapping(value = "/buy", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<?> buy(@CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie,
+    public ResponseEntity<?> buy(@CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                                  @RequestBody Order order) {
         if (givenCookie == null || givenCookie.isEmpty()) {
             return ResponseEntity.ok("error");

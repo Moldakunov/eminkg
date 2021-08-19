@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Cookie {
     public static void workingWithCookie(CookiesRepository cookiesRepository, String givenCookie, HttpServletResponse response, Model model) {
         javax.servlet.http.Cookie cookie;
-        if (givenCookie.isEmpty()) {
+        if (givenCookie == null || givenCookie.isEmpty()) {
             cookie = new javax.servlet.http.Cookie("JSESSIONID", SessionIdGenerator.getInstance().getSessionId());
             cookie.setMaxAge(-1);
             cookie.setPath("/");

@@ -40,7 +40,7 @@ public class OtherTemplatesController {
 
     @RequestMapping(value = {"/index", "/"}, method = RequestMethod.GET)
     public String index(Model model,
-                        @CookieValue(value = "JSESSIONID", defaultValue = "") String givenCookie,
+                        @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                         HttpServletResponse response,
                         HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
