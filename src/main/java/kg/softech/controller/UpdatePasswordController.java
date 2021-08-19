@@ -39,7 +39,7 @@ public class UpdatePasswordController {
             @RequestParam("oldPassword") String oldPassword,
             @RequestParam("newPassword") String newPassword,
             Model model,
-            @CookieValue(name = "JSESSIONID") String givenCookie,
+            @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
             HttpServletResponse response) throws IOException {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
 

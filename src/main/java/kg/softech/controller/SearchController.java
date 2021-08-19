@@ -45,7 +45,7 @@ public class SearchController {
     @GetMapping
     public String search(@ModelAttribute("searchForm") SearchText searchText,
                          Model model,
-                         @CookieValue(name = "JSESSIONID") String givenCookie,
+                         @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                          HttpServletResponse response,
                          HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);

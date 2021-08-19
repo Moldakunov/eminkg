@@ -35,7 +35,7 @@ public class forgotPasswordController {
 
     @GetMapping("/forgotPassword")
     public String register(Model model,
-                           @CookieValue(name = "JSESSIONID") String givenCookie,
+                           @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                            HttpServletResponse response) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
 
@@ -52,7 +52,7 @@ public class forgotPasswordController {
             @RequestParam("email") String email,
 
             Model model,
-            @CookieValue(name = "JSESSIONID") String givenCookie,
+            @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
             HttpServletResponse response) throws IOException {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
 

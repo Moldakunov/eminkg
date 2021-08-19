@@ -212,7 +212,7 @@ public class OtherTemplatesController {
 
     @GetMapping("/delivery")
     public String delivery(Model model,
-                            @CookieValue(name = "JSESSIONID") String givenCookie,
+                            @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                             HttpServletResponse response,
                             HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -234,7 +234,7 @@ public class OtherTemplatesController {
 
     @GetMapping("/services")
     public String services(Model model,
-                           @CookieValue(name = "JSESSIONID") String givenCookie,
+                           @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                            HttpServletResponse response,
                            HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -259,7 +259,7 @@ public class OtherTemplatesController {
     public String addProductToFavorite(
             @RequestParam("productId") String productId,
             Model model,
-            @CookieValue(name = "JSESSIONID") String givenCookie,
+            @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
             HttpServletResponse response,
             HttpServletRequest request,
             HttpSession session) throws IOException {

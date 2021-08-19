@@ -29,7 +29,7 @@ public class CustomErrorController implements ErrorController {
     public String handleError(Model model,
                               HttpServletRequest request,
                               HttpServletResponse response,
-                              @CookieValue(name = "JSESSIONID") String givenCookie) {
+                              @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
 
         model.addAttribute("title", GlobalVar.storeName);

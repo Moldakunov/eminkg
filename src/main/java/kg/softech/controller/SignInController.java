@@ -48,7 +48,7 @@ public class SignInController {
 
     @GetMapping("/sign-in")
     public String signIn(Model model,
-                          @CookieValue(name = "JSESSIONID") String givenCookie,
+                          @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                           HttpServletResponse response,
                           HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -66,7 +66,7 @@ public class SignInController {
             @RequestParam("emailSignin") String email,
             @RequestParam("passwordSignin") String password,
             Model model,
-            @CookieValue(name = "JSESSIONID") String givenCookie,
+            @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
             HttpServletResponse response,
             HttpServletRequest request) throws IOException {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -121,7 +121,7 @@ public class SignInController {
 
     @GetMapping("/account")
     public String account(Model model,
-                          @CookieValue(name = "JSESSIONID") String givenCookie,
+                          @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                           HttpServletResponse response,
                           HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -154,7 +154,7 @@ public class SignInController {
 
     @GetMapping("/orders")
     public String orders(Model model,
-                         @CookieValue(name = "JSESSIONID") String givenCookie,
+                         @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                          HttpServletResponse response,
                          HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -191,7 +191,7 @@ public class SignInController {
 
     @GetMapping("/favorites")
     public String favorites(Model model,
-                         @CookieValue(name = "JSESSIONID") String givenCookie,
+                         @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
                          HttpServletResponse response,
                          HttpSession session) {
         Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);

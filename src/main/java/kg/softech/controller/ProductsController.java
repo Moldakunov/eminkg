@@ -130,7 +130,7 @@ public class ProductsController {
   public String getProductBySeoUrl(
       @PathVariable String seoUrl,
       Model model,
-      @CookieValue(name = "JSESSIONID") String givenCookie,
+      @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
       HttpServletResponse response,
       HttpSession session) {
     Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);

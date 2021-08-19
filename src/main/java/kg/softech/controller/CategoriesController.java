@@ -82,7 +82,7 @@ public class CategoriesController {
   public String getCategory(
       @PathVariable String categoryName,
       Model model,
-      @CookieValue(name = "JSESSIONID") String givenCookie,
+      @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
       HttpServletResponse response,
       HttpSession session) {
     Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
@@ -127,7 +127,7 @@ public class CategoriesController {
       @PathVariable String categoryName,
       @PathVariable String subCategoryName,
       Model model,
-      @CookieValue(name = "JSESSIONID") String givenCookie,
+      @CookieValue(name = "JSESSIONID", required = false, defaultValue = "") String givenCookie,
       HttpServletResponse response,
       HttpSession session) {
     Cookie.workingWithCookie(cookiesRepository, givenCookie, response, model);
