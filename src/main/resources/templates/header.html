@@ -41,7 +41,7 @@
                                    th:onclick="$.get('/pages/' + ${category.id}}"
                                    th:text="${category.name}">Категории</a>
                                 <div class="mega-menu">
-                                    <div class="mega-menu__column">
+                                    <div class="mega-menu__column mega-menu__column_height">
                                         <ul class="mega-menu__list" th:each="subCategory : ${category.subCategory}">
                                             <li>
                                                 <a th:href="'/category/' + ${category.translit} + '/' + ${subCategory.translit}"
@@ -101,7 +101,7 @@
                                     th:href="'/category/' + ${category.translit}"
                                     th:text="${category.name}">Категории</a>
                                 <div class="mega-menu">
-                                    <div class="mega-menu__column">
+                                    <div class="mega-menu__column mega-menu__column_height">
                                         <ul class="mega-menu__list" th:each="subCategory : ${category.subCategory}">
                                             <li>
                                                 <a th:href="'/category/' + ${category.translit} + '/' + ${subCategory.translit}"

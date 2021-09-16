@@ -14965,9 +14965,12 @@ textarea.form-control {
     color: #000
 }
 
+.mega-menu .mega-menu__column_height {
+    min-height: 950px
+}
+
 .mega-menu .mega-menu__column {
     min-width: 180px;
-    min-height: 950px
 }
 
 .mega-menu .mega-menu__list {
